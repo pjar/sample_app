@@ -46,5 +46,11 @@ describe UsersController do
       get :show, :id => @user
       response.should have_selector('h1>img', :class => 'gravatar')
     end
+
+    it "should have a right URL" do
+      get :show, :id => @user
+      response.should have_selector('td>a', :content  => user_path(@user),
+                                            :href => user_path(@user))
+    end
   end
 end
